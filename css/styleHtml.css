@@ -1,0 +1,138 @@
+body {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('../resources/pexels-kovyrina-937980.jpg');
+}
+header {
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+main {
+    padding: 2rem;
+}
+nav {
+    background-color: rgba(17, 14, 226, 0.7);
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: auto;
+    margin: 0 auto;
+    max-width: 90%; 
+
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+.special-heading {
+    margin: 10px;
+    color: #ffffffc9;
+    text-shadow: -6px 6px 8px #ddc8c8af;
+    align-items: center;
+    text-align: center;
+}
+
+.special-h2 {
+    margin: 10px;
+    color: #e27777e7;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.overlay-card {
+    display: block;
+    position: absolute;
+    width: 70%;
+    height: 15%;
+    background-color: transparent;
+    box-shadow: -12px -12px 24px rgba(255, 255, 255, 0.726);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    text-decoration: none;
+    color: inherit;
+}
+
+.overlay-card img {
+    width: 50px; 
+    height: auto;
+    position: absolute;
+    bottom: 10px; 
+    left: 10px;
+}
+
+.overlay-card h2{
+    margin: 10;
+    padding: 10;
+    color: #b64e4e;
+    font-size: 1.5rem;
+}
+
+.overlay-card p {
+    margin: 10;
+    padding: 10;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.top {
+    top: 30%;
+    left: 15%;
+    border-bottom: 5px solid rgb(255, 0, 212);
+    background-color: rgba(172, 9, 221, 0.459);
+    text-align: right
+}
+.left {
+    top: 45%;
+    left: 9%;
+    border-bottom: 5px solid red;
+    background-color: rgba(51, 51, 51, 0.945);
+    text-align: right
+}
+.down {
+    top: 60%;
+    left: 37%;
+    border-bottom: 5px solid rgb(17, 57, 165);
+    background-color:rgba(61, 212, 223, 0.514);
+    text-align: right
+}
+.right {
+    top: 45%;
+    right: 8%;
+    border-bottom: 5px solid cyan;
+    background-color: rgba(224, 42, 96, 0.377);
+    text-align: right
+}
+
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    position: absolute;
+    bottom: 0;
+}
