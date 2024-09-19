@@ -5,14 +5,6 @@ body {
     font-family: Arial, sans-serif;
     background-image: url('../resources/pexels-kovyrina-937980.jpg');
 }
-header {
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-}
-main {
-    padding: 2rem;
-}
 nav {
     background-color: rgba(17, 14, 226, 0.7);
     padding: 0.5rem;
