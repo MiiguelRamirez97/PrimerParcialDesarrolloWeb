@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segundo Parcial Desarrollo Web</title>
+    <meta name="author" content="Miguel Angel Ramirez Perez">
+    <meta name="description" content="Parcial2DesarrolloWeb">
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="module" src="../main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="section" id="consult-section">
+            <h2>Consultar Foods</h2>
+            <button id="consult-button">Consultar</button>
+            <ul id="food-list" class="food-list"></ul>
+        </div>
+        <div class="section" id="form-section">
+            <h2>Agregar Food</h2>
+            <form id="food-form">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Imagen URL</label>
+                    <input type="url" id="image" name="image" required>
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Ingredientes (separados por comas)</label>
+                    <input type="text" id="ingredients" name="ingredients" required>
+                </div>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
