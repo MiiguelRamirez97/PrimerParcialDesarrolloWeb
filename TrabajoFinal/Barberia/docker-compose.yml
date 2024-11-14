@@ -1,0 +1,20 @@
+name: backend
+services:
+  api: 
+    build: backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - 8081:8080
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:17  
+    env_file:
+      - .env      
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  
+    ports:
+      - "5432:5432"
+
