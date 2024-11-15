@@ -9,6 +9,10 @@ class BarberRoutes{
         this.router
             .route("/get")
             .get(this.controller.getAllBarbers);
+
+        this.router
+        .route("/login")
+        .post(this.controller.loginBarber.bind(this.controller));
     }
 
 }

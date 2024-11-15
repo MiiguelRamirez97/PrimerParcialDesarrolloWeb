@@ -3,13 +3,17 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS client (
     client_document VARCHAR(10) NOT NULL PRIMARY KEY,
     client_name VARCHAR(50) NOT NULL,
-    client_mobile VARCHAR(10) NOT NULL
+    client_mobile VARCHAR(10) NOT NULL,
+    client_email VARCHAR(50) NOT NULL,
+    client_password VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS barber (
     barber_document VARCHAR(10) NOT NULL PRIMARY KEY,
     barber_name VARCHAR(50) NOT NULL,
-    barber_mobile VARCHAR(10) NOT NULL
+    barber_mobile VARCHAR(10) NOT NULL,
+    barber_email VARCHAR(50) NOT NULL,
+    barber_password VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS appointment (
