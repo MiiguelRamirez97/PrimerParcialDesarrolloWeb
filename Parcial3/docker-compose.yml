@@ -1,0 +1,11 @@
+name: parcial3
+services:
+  db:
+    image: postgres:17  
+    env_file:
+      - .env      
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d   
+    ports:
+      - "5432:5432"
+  
