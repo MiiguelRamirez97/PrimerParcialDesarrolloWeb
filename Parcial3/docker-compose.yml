@@ -8,4 +8,13 @@ services:
       - ./db:/docker-entrypoint-initdb.d   
     ports:
       - "5432:5432"
+
+  backend: 
+    build: backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - 8081:8080
+    depends_on:
+      - db
   
