@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"paciente1@example.com\",\n    \"password\": \"passwordClient123\"\n}",
+							"raw": "{\n    \"email\": \"paciente2@example.com\",\n    \"password\": \"passwordClient123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,11 +44,21 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"\",\n    \"password\": \"\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -56,7 +66,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/patient/:patientId/appointment",
+							"raw": "http://localhost:8081/patient/appointment",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -64,7 +74,6 @@
 							"port": "8081",
 							"path": [
 								"patient",
-								":patientId",
 								"appointment"
 							],
 							"query": [
@@ -72,12 +81,6 @@
 									"key": "date",
 									"value": "20-11-2024",
 									"disabled": true
-								}
-							],
-							"variable": [
-								{
-									"key": "patientId",
-									"value": "2"
 								}
 							]
 						}
@@ -87,11 +90,21 @@
 				{
 					"name": "crear appointment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"doctorId\": 2,\n    \"date\": \"2024-11-21\",\n    \"hour\": \"14:00:00\"\n}",
+							"raw": "{\n    \"doctorId\": 2,\n    \"date\": \"2024-11-21\",\n    \"hour\": \"13:00:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -99,7 +112,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/patient/:patientId/appointment",
+							"raw": "http://localhost:8081/patient/appointment",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -107,14 +120,7 @@
 							"port": "8081",
 							"path": [
 								"patient",
-								":patientId",
 								"appointment"
-							],
-							"variable": [
-								{
-									"key": "patientId",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -123,6 +129,16 @@
 				{
 					"name": "actualizar appointment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -159,6 +175,16 @@
 				{
 					"name": "borrar appointment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -203,11 +229,21 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"\",\n    \"password\": \"\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -241,11 +277,21 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"\",\n    \"password\": \"\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"

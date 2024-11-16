@@ -1,7 +1,8 @@
 import {Router} from 'express';
 import { PatientController } from '../controllers/PatientController.mjs';
 import { check } from 'express-validator';
-import authMiddleware from '../middlewares/authMiddleware.mjs';
+import { authenticateJWT } from '../middlewares/auth.mjs';
+import { authorizeRole } from '../middlewares/authorize.mjs';
 import { AppointmentController } from '../controllers/AppointmentController.mjs';
 
 class PatientRoutes {
@@ -17,12 +18,12 @@ class PatientRoutes {
             ],
             this.controller.login.bind(this.controller));
         this.router
-            .route('/:patientId/appointment')
-            .get(this.appointmentController.getAppointmentsByPatientId)
-            .post(this.appointmentController.createAppointment);
+            .route('/appointment')
+            .get(authenticateJWT, authorizeRole('patient'),this.appointmentController.getAppointmentsByPatientId)
+            .post(authenticateJWT, authorizeRole('patient'),this.appointmentController.createAppointment);
         this.router
             .route('/appointment/:appointmentId')
-            .put(
+            .put(authenticateJWT, authorizeRole('patient'),
                 [
                     check('doctorId').not().isEmpty().withMessage('Doctor ID is required'),
                     check('date').not().isEmpty().withMessage('Date is required'),
@@ -30,7 +31,7 @@ class PatientRoutes {
                 ],
                 this.appointmentController.updateAppointment
             )
-            .delete(this.appointmentController.deleteAppointment);
+            .delete(authenticateJWT, authorizeRole('patient'),this.appointmentController.deleteAppointment);
     }
 }
 

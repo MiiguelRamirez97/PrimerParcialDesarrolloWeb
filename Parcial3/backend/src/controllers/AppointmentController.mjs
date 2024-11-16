@@ -24,7 +24,7 @@ class AppointmentController {
     }
 
     async getAppointmentsByPatientId(req, res) {
-        const { patientId } = req.params;
+        const patientId = req.user.id;
         let { date } = req.query;
 
         if (date) {
@@ -44,7 +44,7 @@ class AppointmentController {
     }
 
     async createAppointment(req, res) {
-        const { patientId } = req.params;
+        const patientId = req.user.id;
         const { doctorId, date, hour } = req.body;
 
         console.log(patientId, doctorId, date, hour);
