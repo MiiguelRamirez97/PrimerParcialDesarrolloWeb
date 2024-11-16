@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import { setContentType } from "./middlewares/middleware.mjs";
 
 import { PatientRoutes } from "./routes/PatientRoutes.mjs";
+import { DoctorRoutes } from "./routes/DoctorRoutes.mjs";
 
 const app = express();
 dotenv.config();
@@ -34,8 +35,10 @@ app.use(express.json());
 app.use(setContentType);
 
 const barberRoutes = new PatientRoutes();
+const doctorRoutes = new DoctorRoutes();
 
 app.use("/patient", barberRoutes.router);
+app.use('/doctor', doctorRoutes.router);
 
 app.all("*", (req, res) => {
     res.status(404).send(JSON.stringify({ message: "invalid path" }));
