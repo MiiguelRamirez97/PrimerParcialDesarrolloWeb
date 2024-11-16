@@ -58,6 +58,38 @@ class AppointmentService {
             throw err;
         }
     }
+
+    async updateAppointment(appointmentId, doctorId, date, hour) {
+        try {
+            const doctorConflict = await new Db().query(
+                'SELECT * FROM medicalappointment WHERE doctor_id = $1 AND date = $2 AND hour = $3 AND id != $4',
+                [doctorId, date, hour, appointmentId]
+            );
+            if (doctorConflict.rows.length > 0) {
+                throw new Error('There is already an appointment for this doctor at the specified date and time');
+            }
+
+            const result = await new Db().query(
+                'UPDATE medicalappointment SET doctor_id = $1, date = $2, hour = $3 WHERE id = $4 RETURNING *',
+                [doctorId, date, hour, appointmentId]
+            );
+            return result.rows[0];
+        } catch (err) {
+            console.log("Error al actualizar la cita", err);
+            throw err;
+        }
+    }
+
+    async deleteAppointment(appointmentId) {
+        const db = new Db();
+        try {
+            const result = await db.query('DELETE FROM medicalappointment WHERE id = $1 RETURNING *', [appointmentId]);
+            return "Appointment deleted";
+        } catch (err) {
+            console.log("Error al eliminar la cita", err);
+            throw err;
+        }
+    }
 }
 
 export { AppointmentService };

@@ -20,6 +20,17 @@ class PatientRoutes {
             .route('/:patientId/appointment')
             .get(this.appointmentController.getAppointmentsByPatientId)
             .post(this.appointmentController.createAppointment);
+        this.router
+            .route('/appointment/:appointmentId')
+            .put(
+                [
+                    check('doctorId').not().isEmpty().withMessage('Doctor ID is required'),
+                    check('date').not().isEmpty().withMessage('Date is required'),
+                    check('hour').not().isEmpty().withMessage('Hour is required')
+                ],
+                this.appointmentController.updateAppointment
+            )
+            .delete(this.appointmentController.deleteAppointment);
     }
 }
 

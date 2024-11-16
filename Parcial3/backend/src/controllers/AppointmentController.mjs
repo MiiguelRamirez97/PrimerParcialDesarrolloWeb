@@ -6,6 +6,8 @@ class AppointmentController {
         this.getAppointmentsByDoctorId = this.getAppointmentsByDoctorId.bind(this);
         this.getAppointmentsByPatientId = this.getAppointmentsByPatientId.bind(this);
         this.createAppointment = this.createAppointment.bind(this);
+        this.updateAppointment = this.updateAppointment.bind(this);
+        this.deleteAppointment = this.deleteAppointment.bind(this);
     }
 
     async getAppointmentsByDoctorId(req, res) {
@@ -54,6 +56,33 @@ class AppointmentController {
         try {
             const appointment = await this.appointmentService.createAppointment(patientId, doctorId, date, hour);
             res.status(201).json(appointment);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+
+    async updateAppointment(req, res) {
+        const { appointmentId } = req.params;
+        const { doctorId, date, hour } = req.body;
+
+        if (!doctorId || !date || !hour) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
+        try {
+            const appointment = await this.appointmentService.updateAppointment(appointmentId, doctorId, date, hour);
+            res.status(200).json(appointment);
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
+
+    async deleteAppointment(req, res) {
+        const { appointmentId } = req.params;
+
+        try {
+            const appointment = await this.appointmentService.deleteAppointment(appointmentId);
+            res.status(200).json(appointment);
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
