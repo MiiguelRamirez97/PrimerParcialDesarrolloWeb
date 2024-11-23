@@ -1,5 +1,8 @@
 import { Router } from 'express';
 import { BarberController } from '../controllers/BarberController.mjs';
+import { check } from 'express-validator';
+import { authenticateJWT } from '../middlewares/auth.mjs';
+import { authorizeRole } from '../middlewares/authorize.mjs';
 
 class BarberRoutes{
     constructor(){
@@ -12,7 +15,12 @@ class BarberRoutes{
 
         this.router
         .route("/login")
-        .post(this.controller.loginBarber.bind(this.controller));
+        .post(
+            [
+                check('email').isEmail().withMessage('Email is not valid'),
+                check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
+            ],
+            this.controller.loginBarber.bind(this.controller));
     }
 
 }

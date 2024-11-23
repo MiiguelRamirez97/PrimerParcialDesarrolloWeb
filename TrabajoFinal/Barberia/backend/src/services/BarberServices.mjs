@@ -1,5 +1,7 @@
 import {Db} from "../config/db.mjs";
 import { Barber } from "../models/Barber.mjs";
+import jwt from 'jsonwebtoken';
+import JWT_SECRET from '../config/jwt.mjs';
 
 class BarberService{
     getAllBarbers = async () => {
@@ -25,7 +27,9 @@ class BarberService{
             }
             console.log(results.rows[0]);
             const {barber_document, barber_name, barber_mobile, barber_email} = results.rows[0];
-            return new Barber(barber_document, barber_name, barber_mobile, barber_email);
+            const barber = new Barber(barber_document, barber_name, barber_mobile, barber_email);
+            const token = jwt.sign({ id: barber.id, role: 'barber' }, JWT_SECRET, { expiresIn: '30m' });
+            return { token };
         } catch (err) {
             console.log("error al logear el barbero", err);
             throw err;
