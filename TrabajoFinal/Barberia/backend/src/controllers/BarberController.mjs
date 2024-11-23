@@ -16,6 +16,20 @@ class BarberController {
         }
     }
 
+    getBarberByDocument = async(req, res) => {
+        const barberDocument = req.params.barberDocument;
+
+        try {
+            const barber = await this.#service.getBarberByDocument(barberDocument);
+            if (!barber) {
+                return res.status(404).json({ message: 'Barber not found' });
+            }
+            res.status(200).json(barber);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+
     loginBarber = async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

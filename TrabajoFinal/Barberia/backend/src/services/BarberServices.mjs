@@ -16,6 +16,30 @@ class BarberService{
         }
     }
 
+    getBarberByDocument = async (barberDocument) => {
+        try {
+            console.log("Getting barber");
+            const query = "SELECT * FROM barber WHERE barber_document = $1";
+            const results = await new Db().query(query, [barberDocument]);
+            return results.rows[0];
+        } catch (err) {
+            console.log("error al obtener el barbero", err);
+            throw err;
+        }
+    }
+
+    getBarberByName = async (barberName) => {
+        try {
+            console.log("Getting barber");
+            const query = "SELECT * FROM barber WHERE barber_name = $1";
+            const results = await new Db().query(query, [barberName]);
+            return results.rows[0];
+        } catch (err) {
+            console.log("error al obtener el barbero", err);
+            throw err;
+        }
+    }
+
     loginBarber = async (email, password) => {
         try {
             console.log("Logging in barber");

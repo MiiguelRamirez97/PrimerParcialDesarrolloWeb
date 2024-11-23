@@ -8,6 +8,7 @@ import { setContentType } from "./middlewares/middleware.mjs";
 import { BarberRoutes } from "./routes/BarberRoutes.mjs";
 import { ClientRoutes } from "./routes/ClientRoutes.mjs";
 import { UserRoutes } from "./routes/UserRoutes.mjs";
+import { AppointmentRoutes } from "./routes/AppointmentRoutes.mjs";
 
 const app = express();
 app.use(cors());
@@ -38,10 +39,12 @@ app.use(setContentType);
 const barberRoutes = new BarberRoutes();
 const clientRoutes = new ClientRoutes();
 const userRoutes = new UserRoutes();
+const appointmentRoutes = new AppointmentRoutes();
 
 app.use("/barbers", barberRoutes.router);
 app.use("/clients", clientRoutes.router);
 app.use("/users", userRoutes.router);
+app.use("/appointments", appointmentRoutes.router);
 
 app.all("*", (req, res) => {
     res.status(404).send(JSON.stringify({ message: "invalid path" }));

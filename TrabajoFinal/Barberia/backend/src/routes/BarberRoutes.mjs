@@ -12,6 +12,9 @@ class BarberRoutes{
         this.router
             .route("/get")
             .get(authenticateJWT, authorizeRole('client'), this.controller.getAllBarbers);
+        this.router
+            .route("/byDocument/:barberDocument")
+            .get(authenticateJWT, authorizeRole('client'), this.controller.getBarberByDocument.bind(this.controller));
 
         this.router
         .route("/login")

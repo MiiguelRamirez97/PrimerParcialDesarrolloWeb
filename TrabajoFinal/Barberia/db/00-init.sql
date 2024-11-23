@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS appointment (
     client_document VARCHAR(10) NOT NULL,
     barber_document VARCHAR(10) NOT NULL,
     appointment_date DATE NOT NULL,
+    appointment_hour TIME NOT NULL,
     status VARCHAR(20) NOT NULL,
     FOREIGN KEY (client_document) REFERENCES client(client_document),
     FOREIGN KEY (barber_document) REFERENCES barber(barber_document)

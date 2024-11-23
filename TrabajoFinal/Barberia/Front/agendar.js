@@ -53,4 +53,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error:', error);
         alert('Error al obtener la lista de barberos');
     }
+
+    // Agregar cita
+    document.getElementById('agendar-form')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const fecha = document.getElementById('date').value;
+        const hora = document.getElementById('time').value;
+        const barbero = document.getElementById('barbero').value;
+
+        try {
+            const response = await fetch('http://localhost:8081/appointments/create', {
+                method: 'POST',
+                headers: {
+                    //'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: document.getElementById('email').value,
+                    identificacion: document.getElementById('identificacion').value,
+                    fecha,
+                    hora,
+                    barbero
+                })
+            });
+
+            if (response.ok) {
+                alert('Cita agendada exitosamente!');
+                window.location.href = 'mis-citas.html';
+            } else {
+                alert('Error al agendar la cita');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error al agendar la cita');
+        }
+    });
 });
