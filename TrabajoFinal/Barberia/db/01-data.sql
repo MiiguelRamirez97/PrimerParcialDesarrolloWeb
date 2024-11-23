@@ -1,0 +1,3 @@
+INSERT INTO public.barber (barber_document, barber_name, barber_mobile, barber_email, barber_password) VALUES('1037000001', 'barber1', '3001002001', 'barber1test@yopmail.com', '123456');
+INSERT INTO public.barber (barber_document, barber_name, barber_mobile, barber_email, barber_password) VALUES('1037000002', 'barber2', '3001002002', 'barber2test@yopmail.com', '123456');
+INSERT INTO public.barber (barber_document, barber_name, barber_mobile, barber_email, barber_password) VALUES('1037000003', 'barber3', '3001002003', 'barber3test@yopmail.com', '123456');
