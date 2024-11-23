@@ -29,6 +29,21 @@ class ClientController {
             res.status(500).json({ error: err.message });
         }
     }
+
+    registerClient = async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        const { email, password, name, mobile, identification } = req.body;
+
+        try {
+            const client = await this.#service.registerClient(email, password, name, mobile, identification);
+            res.status(201).json(client);
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
 }
 
 export  { ClientController };

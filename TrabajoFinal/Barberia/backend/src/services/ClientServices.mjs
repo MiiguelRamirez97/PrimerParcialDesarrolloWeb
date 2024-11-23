@@ -25,7 +25,6 @@ class ClientService{
             if (results.rowCount === 0) {
                 throw new Error("Invalid email or password");
             }
-            console.log(results.rows[0]);
             const {client_document, client_name, client_mobile, client_email} = results.rows[0];
             const client = new Client(client_document, client_name, client_mobile, client_email);
             const token = jwt.sign({ id: client.id, role: 'client' }, JWT_SECRET, { expiresIn: '30m' });
@@ -33,6 +32,18 @@ class ClientService{
         } catch (err) {
             console.log("error al logear el cliente", err);
             throw err;
+        }
+    }
+
+    async registerClient(email, password, name, mobile, identification) {
+        try {
+            const result = await new Db().query(
+                'INSERT INTO client (client_email, client_password, client_name, client_mobile, client_document) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+                [email, password, name, mobile, identification]
+            );
+            return result.rows[0];
+        } catch (error) {
+            throw new Error('Error registering client');
         }
     }
 }
