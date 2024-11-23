@@ -10,8 +10,8 @@ class ClientRoutes{
         this.controller = new ClientController();
 
         this.router
-            .route("/get")
-            .get(this.controller.getAllClients);
+            .route("/byDocument")
+            .get(authenticateJWT, authorizeRole('client'), this.controller.getClientByDocument.bind(this.controller));
 
         this.router
         .route("/login")

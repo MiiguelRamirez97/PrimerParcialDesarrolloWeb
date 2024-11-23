@@ -4,14 +4,14 @@ import jwt from 'jsonwebtoken';
 import JWT_SECRET from '../config/jwt.mjs';
 
 class ClientService{
-    getAllClients = async () => {
+    getClientByDocument = async (clientDocument) => {
         try {
-            console.log("Getting all clients");
-            const query = "SELECT * FROM client";
-            const results = await new Db().query(query);
-            return results.rows.map(({client_document,client_name,client_mobile}) => new Client(client_document, client_name, client_mobile));
+            console.log("Getting client");
+            const query = "SELECT * FROM client WHERE client_document = $1";
+            const results = await new Db().query(query, [clientDocument]);
+            return results.rows[0];
         } catch (err) {
-            console.log("error al listar los clientes", err);
+            console.log("error al obtener el cliente", err);
             throw err;
         }
     }

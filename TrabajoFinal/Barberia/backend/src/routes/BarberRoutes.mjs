@@ -11,7 +11,7 @@ class BarberRoutes{
 
         this.router
             .route("/get")
-            .get(this.controller.getAllBarbers);
+            .get(authenticateJWT, authorizeRole('client'), this.controller.getAllBarbers);
 
         this.router
         .route("/login")
