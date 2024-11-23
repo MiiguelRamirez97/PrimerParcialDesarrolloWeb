@@ -5,6 +5,7 @@ import * as swaggerUi from "swagger-ui-express";
 import { setContentType } from "./middlewares/middleware.mjs";
 
 import { BarberRoutes } from "./routes/BarberRoutes.mjs";
+import { ClientRoutes } from "./routes/ClientRoutes.mjs";
 
 const app = express();
 
@@ -32,8 +33,10 @@ app.use(express.json());
 app.use(setContentType);
 
 const barberRoutes = new BarberRoutes();
+const clientRoutes = new ClientRoutes();
 
 app.use("/barbers", barberRoutes.router);
+app.use("/clients", clientRoutes.router);
 
 app.all("*", (req, res) => {
     res.status(404).send(JSON.stringify({ message: "invalid path" }));
