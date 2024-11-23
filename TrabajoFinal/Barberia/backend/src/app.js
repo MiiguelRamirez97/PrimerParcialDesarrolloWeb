@@ -1,13 +1,16 @@
 import express from "express";
 import swaggerJsdoc from "swagger-jsdoc";
 import * as swaggerUi from "swagger-ui-express";
+import cors from "cors";
 
 import { setContentType } from "./middlewares/middleware.mjs";
 
 import { BarberRoutes } from "./routes/BarberRoutes.mjs";
 import { ClientRoutes } from "./routes/ClientRoutes.mjs";
+import { UserRoutes } from "./routes/UserRoutes.mjs";
 
 const app = express();
+app.use(cors());
 
 const options = {
     definition: {
@@ -34,9 +37,11 @@ app.use(setContentType);
 
 const barberRoutes = new BarberRoutes();
 const clientRoutes = new ClientRoutes();
+const userRoutes = new UserRoutes();
 
 app.use("/barbers", barberRoutes.router);
 app.use("/clients", clientRoutes.router);
+app.use("/users", userRoutes.router);
 
 app.all("*", (req, res) => {
     res.status(404).send(JSON.stringify({ message: "invalid path" }));

@@ -12,23 +12,64 @@ document.getElementById('registro-form')?.addEventListener('submit', function(e)
     localStorage.setItem('users', JSON.stringify(users));
     alert('Registro exitoso!');
     window.location.href = 'login.html';
-});
+});*/
 
 // Inicio de sesión
-document.getElementById('login-form')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('login-form');
+    const opcionesOcultas = document.getElementById('opciones-ocultas');
+    const iniciarSesion = document.getElementById('iniciar-sesion');
+    const cerrarSesion = document.getElementById('cerrar-sesion');
 
-    const user = users.find(u => u.email === email && u.password === password);
-    if (user) {
-        localStorage.setItem('loggedUser', JSON.stringify(user));
-        window.location.href = 'mis-citas.html';
-    } else {
-        alert('Email o contraseña incorrectos');
+    // Mostrar opciones ocultas si el usuario está logueado
+    const token = localStorage.getItem('jwt_token');
+    if (token) {
+        if (opcionesOcultas) {
+            opcionesOcultas.style.display = 'inline';
+        }
+        if (iniciarSesion) {
+            iniciarSesion.style.display = 'none';
+        }
+    }
+
+    if (cerrarSesion) {
+        cerrarSesion.addEventListener('click', (event) => {
+            event.preventDefault();
+            localStorage.removeItem('jwt_token');
+            window.location.href = 'index.html';
+        });
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:8081/users/login ', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('jwt_token', data.token);
+                    window.location.href = 'index.html';
+                } else {
+                    document.getElementById('login-error').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('login-error').style.display = 'block';
+            }
+        });
     }
 });
-
+/*
 // Mostrar citas en "Mis Citas"
 const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
 if (loggedUser) {
